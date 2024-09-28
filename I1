@@ -1,0 +1,20 @@
+//inheritance in oop
+#include<iostream>
+using namespace std;
+class something
+{
+int i;float y;
+public:
+};
+
+//creating  derived class fromm class - SOMETHING
+class something2 : something
+{
+public:
+int lang = 9;
+}
+int main()
+{
+
+return 0;
+}
