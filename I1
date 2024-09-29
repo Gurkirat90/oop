@@ -1,20 +1,49 @@
 //inheritance in oop
+//basic syntax example
 #include<iostream>
 using namespace std;
 class something
 {
-int i;float y;
+
 public:
+int i;
+float y;
+something(int inpid)
+{
+i=inpid;
+y=45;
+}
+something(){}
+};
+//creating  derived class fromm class - SOMETHING
+//by default visibility mode is private-public member->private
+// public visibility mode-public member->public
+//private members are never inheritred
+
+
+class something2 :public something
+{
+public:int langcode;
+something2(int inpid)
+{
+    i=inpid;
+    langcode = 9;
+}
+
 };
 
-//creating  derived class fromm class - SOMETHING
-class something2 : something
-{
-public:
-int lang = 9;
-}
+
+
 int main()
 {
+something there(1),thiss(2);
+cout<<there.y<<endl;
+cout<<thiss.y<<endl;
+something2 that(3);
+cout<<that.langcode<<endl;
+cout<<that.i<<endl;//i is puclic in something but it will be
+//private in something 2 so visisblity mode should be public 
+//to access it in derived class
 
 return 0;
 }
