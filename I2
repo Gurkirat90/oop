@@ -1,0 +1,53 @@
+//single inheritance deeep dive
+//inheritance in oop
+#include<iostream>
+using namespace std;
+class base
+{
+int b1;
+public:
+int b2;
+void setdata();
+int getdata1();
+int getdata2();
+};
+void base :: setdata()
+{
+b1= 1000;b2=90;
+}
+int base :: getdata1()
+{
+return b1;
+}
+int base :: getdata2()
+{
+return b2;
+}
+
+class derived : base
+{int data3;
+public:
+void process();
+void display();
+};
+void derived :: process()
+{setdata();
+data3= b2 * getdata1();
+}
+
+void derived :: display()
+{
+cout<<"value of data1 "<<getdata1()<<endl;
+cout<<"value of data2 "<<b2<<endl;
+cout<<"value of data3 "<<data3<<endl;
+}
+
+
+int main()
+{
+derived der;
+der.process();
+der.display();
+
+return 0;
+}
