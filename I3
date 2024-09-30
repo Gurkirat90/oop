@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    int pubVar;        // Public variable
+protected:
+    int protVar;      // Protected variable
+private:
+    int privVar;      // Private variable
+
+public:
+    Base() : pubVar(1), protVar(2), privVar(3) {}
+
+    void showVars() {
+        cout << "Base Class Variables:\n";
+        cout << "Public: " << pubVar << "\n";
+        cout << "Protected: " << protVar << "\n";
+        cout << "Private: " << privVar << "\n";
+    }
+};
+
+class DerivedPublic : public Base {
+public:
+    void accessBaseMembers() {
+        pubVar = 10;   // Accessible
+        protVar = 20;  // Accessible
+        // privVar = 30; // Not accessible (will cause a compile error)
+        
+        cout << "Derived Public Class Variables:\n";
+        cout << "Public: " << pubVar << "\n";
+        cout << "Protected: " << protVar << "\n";
+        // cout << "Private: " << privVar << "\n"; // Not accessible
+    }
+};
+
+class DerivedProtected : protected Base {
+public:
+    void accessBaseMembers() {
+        pubVar = 10;   // Accessible
+        protVar = 20;  // Accessible
+        // privVar = 30; // Not accessible
+
+        cout << "Derived Protected Class Variables:\n";
+        cout << "Public: " << pubVar << "\n";
+        cout << "Protected: " << protVar << "\n";
+        // cout << "Private: " << privVar << "\n"; // Not accessible
+    }
+};
+
+class DerivedPrivate : private Base {
+public:
+    void accessBaseMembers() {
+        pubVar = 10;   // Accessible
+        protVar = 20;  // Accessible
+        // privVar = 30; // Not accessible
+
+        cout << "Derived Private Class Variables:\n";
+        cout << "Public: " << pubVar << "\n";
+        cout << "Protected: " << protVar << "\n";
+        // cout << "Private: " << privVar << "\n"; // Not accessible
+    }
+};
+
+int main() {
+    Base base;
+    base.showVars();
+
+    DerivedPublic derivedPub;
+    derivedPub.accessBaseMembers();
+
+    DerivedProtected derivedProt;
+    derivedProt.accessBaseMembers();
+
+    DerivedPrivate derivedPriv;
+    derivedPriv.accessBaseMembers();
+
+    return 0;
+}
+
