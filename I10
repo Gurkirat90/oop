@@ -1,0 +1,62 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class person {
+protected:
+    string name, address;
+
+public:
+    person(const string& n, const string& a) : name(n), address(a) {}
+
+    void display() const {
+        cout << "Name: " << name << "\nAddress: " << address << endl;
+    }
+};
+
+class student : virtual public person {
+protected:
+    int student_id, grade;
+
+public:
+    student(const string& n, const string& a, int id, int g)
+        : person(n, a), student_id(id), grade(g) {}
+
+    void display() const {
+        person::display();
+        cout << "Student ID: " << student_id << "\nGrade: " << grade << endl;
+    }
+};
+
+class staff : virtual public person {
+protected:
+    int employee_id;
+    string department;
+
+public:
+    staff(const string& n, const string& a, int id, const string& d)
+        : person(n, a), employee_id(id), department(d) {}
+
+    void display() const {
+        person::display();
+        cout << "Employee ID: " << employee_id << "\nDepartment: " << department << endl;
+    }
+};
+
+class teaching_assistant : public student, public staff {
+public:
+    teaching_assistant(const string& n, const string& a, int student_id, int grade, int employee_id, const string& department)
+        : person(n, a), student(n, a, student_id, grade), staff(n, a, employee_id, department) {}
+
+    void display() const {
+        student::display();
+        staff::display();
+    }
+};
+
+int main() {
+    teaching_assistant harry("Harry", "Somewhere", 1023, 90, 3256, "COE");
+    harry.display();
+
+    return 0;
+}
