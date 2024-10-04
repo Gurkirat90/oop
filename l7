@@ -1,0 +1,64 @@
+// virtual base class
+//class A--> kid 1 (class B) -->,class D
+//class A--> kid 2 (class C) -->'
+//data member of a should be inherited inherited only once 
+//so we will find the solution of virtual base class
+//vitutal base class --->>A
+
+#include<iostream>
+using namespace std;
+class student
+{private:
+protected:int rollno;
+public:
+void set_number(int r)
+{rollno = r;}
+void get_number()
+{cout<<"your rollno is"<<rollno<<endl;}
+};
+
+class exam: virtual public student
+{private:
+protected:float maths,physics;
+public: void setmarks(float m,float p)
+{maths =m;physics=p;}
+void getmarks()
+{cout<<"you have obtained :"<<endl
+<<"maths :"<<maths<<endl
+<<"physics :"<<physics<<endl;}
+};
+
+class sports: virtual public student
+{private:
+protected:float score;
+public:
+void setscore(float s)
+{score=s;}
+void getscore()
+{cout<<"you have obtained :"<<endl
+<<"score :"<<score<<endl;}
+};
+
+class result : public exam ,public sports
+{private:
+protected:float total;
+public:
+void display(void)
+{
+total =maths+physics+score;
+get_number();
+getmarks();
+getscore();
+cout<<"your total is "<<total<<endl;
+}
+};
+int main()
+{
+result harry;
+harry.set_number(8008);
+harry.setmarks(89.7,97.1);
+harry.setscore(76.8);
+harry.display();
+return 0;
+}
+
